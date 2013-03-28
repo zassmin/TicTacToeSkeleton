@@ -53,6 +53,7 @@ describe Board do
       													  "- - -\n" +
 	 													  " | | \n"
 	 	end
-	end
 
+    xit "should display player marks on the board"
+	end
 end
