@@ -13,12 +13,14 @@ class Board
 		@board[row][column] = player
 	end
 
+  # This might not actually be necessary. In the views, we can draw a permanent grid
+  # and insert the value of each cell into it.
 	def display_board
-		"#{display_element(0,0)}|#{display_element(0,1)}|#{display_element(0,2)}\n" +
-	    "- - -\n" +
-		"#{display_element(1,0)}|#{display_element(1,1)}|#{display_element(1,2)}\n" +
+    display_line(0) +
+	  "- - -\n" +
+    display_line(1) +
 		"- - -\n" +
-		"#{display_element(2,0)}|#{display_element(2,1)}|#{display_element(2,2)}\n"
+    display_line(2)
 	end
 
 	def display_element(row, column)
@@ -30,4 +32,7 @@ class Board
 		end
 	end
 
+  def display_line(num)
+		"#{display_element(num,0)}|#{display_element(num,1)}|#{display_element(num,2)}\n"
+  end
 end

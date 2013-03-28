@@ -45,7 +45,7 @@ describe Board do
 		end
 	end
 
-    describe "display_board" do 
+  describe "display_board" do 
 	 	it "should display board" do 
 	 		to_test = @show_board.display_board.should == " | | \n" + 
 	 													  "- - -\n" +
@@ -53,6 +53,7 @@ describe Board do
       													  "- - -\n" +
 	 													  " | | \n"
 	 	end
-	end
 
+    xit "should display player marks on the board"
+	end
 end
