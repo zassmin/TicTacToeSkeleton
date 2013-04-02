@@ -45,8 +45,22 @@ describe Board do
 		end
 	end
 
-  describe "display_board" do 
-	 	it "should display board" do 
+	describe "display_line" do 
+		it "should display element in the designated row" do 
+			@show_board.assign_player_position('x', 0, 2)
+			@show_board.display_element(0,2)
+
+			to_test = @show_board.display_line(0)
+			to_test.should == " | |x\n"
+		end
+
+		xit "should display the row on the board"
+
+	end
+	# make it mock and figure out what to put in the row!!
+
+  	describe "display_board" do 
+	 	xit "should display board" do 
 	 		to_test = @show_board.display_board.should == " | | \n" + 
 	 													  "- - -\n" +
 	 													  " | | \n" +
@@ -54,6 +68,6 @@ describe Board do
 	 													  " | | \n"
 	 	end
 
-    xit "should display player marks on the board"
+    	xit "should display player marks on the board"
 	end
 end
