@@ -1,5 +1,5 @@
 class Game < ActiveRecord::Base
-	attr_accessible :board, :player_o, :player_x, :current_player, :status, :created_at
+	attr_accessible :board, :player_o, :player_x, :current_player, :status
 
 	def initialize 
 		@board = [[nil, nil, nil], 

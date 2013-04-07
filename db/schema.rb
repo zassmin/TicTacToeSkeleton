@@ -13,14 +13,14 @@
 
 ActiveRecord::Schema.define(:version => 20130406222125) do
 
-  create_table "games",          :force => true do |t|
-    t.text     "board",          :default => "[[],[],[]]"
-    t.string   "player_o"
-    t.string   "player_x"
+  create_table "games", :force => true do |t|
+    t.text     "board",          :default => "'---\n- []\n- []\n- []\n'"
+    t.string   "player_o",       :default => "o"
+    t.string   "player_x",       :default => "x"
     t.string   "current_player"
     t.string   "status",         :default => "in_progress"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
   end
 
 end
