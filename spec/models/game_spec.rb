@@ -1,23 +1,26 @@
-require 'game.rb'
+require 'spec_helper'
+require 'game'
 
 describe Game do 
 	before do
 		@test_game = Game.new
 	end
 
-	it "should be initialized with nil values inside of the array, [[]]" do
-		@test_game.board.should == [[nil, nil, nil], 
-									[nil, nil, nil], 
-									[nil, nil, nil]] 
-	end
+	describe "board" do
+		it "should be initialized with nil values inside of the array, [[]]" do
+			@test_game.board.should == [[nil, nil, nil], 
+									    [nil, nil, nil], 
+									    [nil, nil, nil]] 
+		end
 
-	it "should always have a length of 3" do 
-		@test_game.board.length.should == 3
-	end
+		it "should always have a length of 3" do 
+			@test_game.board.length.should == 3
+		end
 
-	it "should always have the array within the array length of 3" do
-		@test_game.board.each { |array| array.length.should == 3 } 		
-	end 
+		it "should always have the array within the array length of 3" do
+			@test_game.board.each { |array| array.length.should == 3 } 		
+		end 
+	end
 
 	describe "assign_player_position" do 
 		it "should establish a position on the board, using 'x' or 'o'" do
@@ -56,10 +59,10 @@ describe Game do
   	describe "display_board" do 
 	 	it "should display board" do 
 	 		@test_game.display_board.should == " | | \n" + 
-	 													  "- - -\n" +
-	 													  " | | \n" +
-      													  "- - -\n" +
-	 													  " | | \n"
+	 										   "- - -\n" +
+	 										   " | | \n" +
+      										   "- - -\n" +
+	 										   " | | \n"
 	 	end
 
     	it "should display player marks on the board" do
@@ -68,10 +71,10 @@ describe Game do
     		@test_game.assign_player_position('x', 2, 2)
 
     		@test_game.display_board.should == "x| | \n" + 
-	 											"- - -\n" +
-	 											" |o| \n" +
-      											"- - -\n" +
-	 											" | |x\n"
+	 										   "- - -\n" +
+	 									   	   " |o| \n" +
+      										   "- - -\n" +
+	 										   " | |x\n"
 		end
 	end
 end

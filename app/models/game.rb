@@ -2,9 +2,7 @@ class Game < ActiveRecord::Base
 	attr_accessible :board, :player_o, :player_x, :current_player, :status
 
 	def initialize 
-		@board = [[nil, nil, nil], 
-				  [nil, nil, nil], 
-				  [nil, nil, nil]]
+		@board = Array.new(3).map{[nil, nil, nil]}
 		@player_o = 'o'
 		@player_x = 'x'
 	end
@@ -13,12 +11,13 @@ class Game < ActiveRecord::Base
 		@board
 	end
 
+	# This could be refactored to use @player_o and @player_x
 	def assign_player_position(player, row, column)
 		@board[row][column] = player
 	end
 
-  # This might not actually be necessary. In the views, we can draw a permanent grid
-  # and insert the value of each cell into it.
+    # This might not actually be necessary. In the views, we can draw a permanent grid
+    # and insert the value of each cell into it.
 	def display_board
     	"#{display_line(0)}" +
 	  	"- - -\n" +
