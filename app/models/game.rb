@@ -8,11 +8,10 @@ class Game < ActiveRecord::Base
 	def initialize 
     super
 		self.board = Array.new(3).map{[nil, nil, nil]}
-		@player_o = 'o'
-		@player_x = 'x'
 	end
 
 	# This could be refactored to use @player_o and @player_x
+  # TODO change name to update_board
 	def assign_player_position(player, row, column)
 		board[row][column] = player
 	end
@@ -39,6 +38,12 @@ class Game < ActiveRecord::Base
   def display_line(row)
  		"#{display_element(row,0)}|#{display_element(row,1)}|#{display_element(row,2)}\n"
   end
+
+  # TODO
+  # Validate that space in board is empty before allowing anything to be inserted into the board
+  # Play method
+  # winner?
+  # current_player (maybe - is it necessary?)
 end
 
 # board = Game.new
