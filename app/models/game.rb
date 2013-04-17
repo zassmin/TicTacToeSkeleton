@@ -36,9 +36,9 @@ class Game < ActiveRecord::Base
 		end
 	end
 
-    def display_line(row)
-   		"#{display_element(row,0)}|#{display_element(row,1)}|#{display_element(row,2)}\n"
-    end
+  def display_line(row)
+ 		"#{display_element(row,0)}|#{display_element(row,1)}|#{display_element(row,2)}\n"
+  end
 end
 
 # board = Game.new
