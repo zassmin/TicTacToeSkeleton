@@ -12,7 +12,11 @@ class Game < ActiveRecord::Base
 
 	# This could be refactored to use @player_o and @player_x
 	def update_board(player, row, column)
-		board[row][column] = player
+    if board[row][column]
+      raise ArgumentError, "This spot is not empty."
+    else
+		  board[row][column] = player
+    end
 	end
 
     # This might not actually be necessary. In the views, we can draw a permanent grid

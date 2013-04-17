@@ -30,8 +30,7 @@ describe Game do
 
     it "should not allow an 'x' or 'o' to be inserted into an already full spot" do
       @test_game.update_board('x', 0, 0)
-      to_test = @test_game.update_board('x', 0, 0)
-      to_test.should == GameError
+      lambda { @test_game.update_board('x', 0, 0) }.should raise_error(ArgumentError)
     end
 	end
 
