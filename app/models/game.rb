@@ -20,8 +20,8 @@ class Game < ActiveRecord::Base
     end
 	end
 
-    # This might not actually be necessary. In the views, we can draw a permanent grid
-    # and insert the value of each cell into it.
+  # This might not actually be necessary. In the views, we can draw a permanent grid
+  # and insert the value of each cell into it.
 	def display_board
     	"#{display_line(0)}" +
 	  	"- - -\n" +
