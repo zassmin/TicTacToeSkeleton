@@ -16,6 +16,7 @@ class Game < ActiveRecord::Base
       raise ArgumentError, "This spot is not empty."
     else
 		  board[row][column] = player
+      self.save
     end
 	end
 
@@ -43,6 +44,7 @@ class Game < ActiveRecord::Base
   end
 
   # TODO
+  # Make sure changes to board are saved in database
   # Only create default values for the board in the db OR initialize it in the model, not both!
   # Validate that space in board is empty before allowing anything to be inserted into the board
   # Play method
