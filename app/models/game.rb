@@ -12,11 +12,16 @@ class Game < ActiveRecord::Base
 
 	# This could be refactored to use @player_o and @player_x
 	def update_board(player, row, column)
-		board[row][column] = player
+    if board[row][column]
+      raise ArgumentError, "This spot is not empty."
+    else
+		  board[row][column] = player
+      self.save
+    end
 	end
 
-    # This might not actually be necessary. In the views, we can draw a permanent grid
-    # and insert the value of each cell into it.
+  # This might not actually be necessary. In the views, we can draw a permanent grid
+  # and insert the value of each cell into it.
 	def display_board
     	"#{display_line(0)}" +
 	  	"- - -\n" +
@@ -39,6 +44,7 @@ class Game < ActiveRecord::Base
   end
 
   # TODO
+  # Make sure changes to board are saved in database
   # Only create default values for the board in the db OR initialize it in the model, not both!
   # Validate that space in board is empty before allowing anything to be inserted into the board
   # Play method

@@ -24,23 +24,21 @@ describe Game do
 
 	describe "update_board" do 
 		it "should establish a position on the board, using 'x' or 'o'" do
-			to_test = @test_game.update_board('x', 0, 1)
-			to_test.should == @test_game.board[0][1]
+			@test_game.update_board('x', 0, 1)
+			@test_game.board[0][1].should == 'x'
 		end
 
     it "should not allow an 'x' or 'o' to be inserted into an already full spot" do
       @test_game.update_board('x', 0, 0)
-      to_test = @test_game.update_board('x', 0, 0)
-      to_test.should == GameError
+      lambda { @test_game.update_board('x', 0, 0) }.should raise_error(ArgumentError)
     end
 	end
 
 	describe "display_element" do
 		it "should display @board element" do
-			mock_player = @test_game.update_board('x', 0, 1)
+			@test_game.update_board('x', 0, 1)
 
-			to_test = @test_game.display_element(0,1)
-			to_test.should == mock_player
+			@test_game.display_element(0,1).should == 'x'
 		end
 
 		it "should display a space if the element is nil" do
