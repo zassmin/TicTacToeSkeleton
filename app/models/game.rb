@@ -1,19 +1,18 @@
 class Game < ActiveRecord::Base
-	attr_accessible :board, :player_o, :player_x, :current_player, :status
+  serialize :board
+  # This line tells Rails which attributes of the model are accessible, i.e., 
+  # which attributes can be modified automatically by outside users 
+  # (such as users submitting requests with web browsers).
+	attr_accessible :board, :current_player, :status, :player_o, :player_x, 
 
 	def initialize 
-		@board = Array.new(3).map{[nil, nil, nil]}
-		@player_o = 'o'
-		@player_x = 'x'
-	end
-
-	def board
-		@board
+    super
+		self.board = Array.new(3).map{[nil, nil, nil]}
 	end
 
 	# This could be refactored to use @player_o and @player_x
-	def assign_player_position(player, row, column)
-		@board[row][column] = player
+	def update_board(player, row, column)
+		board[row][column] = player
 	end
 
     # This might not actually be necessary. In the views, we can draw a permanent grid
@@ -22,12 +21,12 @@ class Game < ActiveRecord::Base
     	"#{display_line(0)}" +
 	  	"- - -\n" +
     	"#{display_line(1)}" +
-		"- - -\n" +
+		  "- - -\n" +
     	"#{display_line(2)}"
 	end
 
 	def display_element(row, column)
-		element = @board[row][column]
+		element = board[row][column]
 		if element
 			element
 		else
@@ -35,9 +34,16 @@ class Game < ActiveRecord::Base
 		end
 	end
 
-    def display_line(row)
-   		"#{display_element(row,0)}|#{display_element(row,1)}|#{display_element(row,2)}\n"
-    end
+  def display_line(row)
+ 		"#{display_element(row,0)}|#{display_element(row,1)}|#{display_element(row,2)}\n"
+  end
+
+  # TODO
+  # Only create default values for the board in the db OR initialize it in the model, not both!
+  # Validate that space in board is empty before allowing anything to be inserted into the board
+  # Play method
+  # winner?
+  # current_player (maybe - is it necessary?)
 end
 
 # board = Game.new
