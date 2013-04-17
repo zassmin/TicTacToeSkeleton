@@ -27,6 +27,12 @@ describe Game do
 			to_test = @test_game.update_board('x', 0, 1)
 			to_test.should == @test_game.board[0][1]
 		end
+
+    it "should not allow an 'x' or 'o' to be inserted into an already full spot" do
+      @test_game.update_board('x', 0, 0)
+      to_test = @test_game.update_board('x', 0, 0)
+      to_test.should == GameError
+    end
 	end
 
 	describe "display_element" do
