@@ -11,8 +11,7 @@ class Game < ActiveRecord::Base
 	end
 
 	# This could be refactored to use @player_o and @player_x
-  # TODO change name to update_board
-	def assign_player_position(player, row, column)
+	def update_board(player, row, column)
 		board[row][column] = player
 	end
 
@@ -40,6 +39,7 @@ class Game < ActiveRecord::Base
   end
 
   # TODO
+  # Only create default values for the board in the db OR initialize it in the model, not both!
   # Validate that space in board is empty before allowing anything to be inserted into the board
   # Play method
   # winner?
