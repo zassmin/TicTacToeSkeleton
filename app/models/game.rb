@@ -23,11 +23,11 @@ class Game < ActiveRecord::Base
   # This might not actually be necessary. In the views, we can draw a permanent grid
   # and insert the value of each cell into it.
 	def display_board
-    	"#{display_line(0)}" +
-	  	"- - -\n" +
-    	"#{display_line(1)}" +
-		  "- - -\n" +
-    	"#{display_line(2)}"
+  	"#{display_line(0)}" +
+  	"- - -\n" +
+  	"#{display_line(1)}" +
+	  "- - -\n" +
+  	"#{display_line(2)}"
 	end
 
 	def display_element(row, column)
@@ -44,7 +44,8 @@ class Game < ActiveRecord::Base
   end
 
   # TODO
-  # Make sure changes to board are saved in database
+  # Test changes to board are saved in database in specs
+  # Check whether we need to clear the test database in between tests
   # Only create default values for the board in the db OR initialize it in the model, not both!
   # Validate that space in board is empty before allowing anything to be inserted into the board
   # Play method
@@ -53,6 +54,6 @@ class Game < ActiveRecord::Base
 end
 
 # board = Game.new
-# board.assign_player_position('x', 0, 1)
-# board.assign_player_position('o', 0, 2)
+# board.update_board('x', 0, 1)
+# board.update_board('o', 0, 2)
 # puts board.display_board

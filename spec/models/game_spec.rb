@@ -65,7 +65,7 @@ describe Game do
 	 		@test_game.display_board.should == " | | \n" + 
 	 										   "- - -\n" +
 	 										   " | | \n" +
-      										   "- - -\n" +
+   										   "- - -\n" +
 	 										   " | | \n"
 	 	end
 
