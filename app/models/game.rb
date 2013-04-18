@@ -12,7 +12,6 @@ class Game < ActiveRecord::Base
 	end
 
 	def update_board(player, row, column)
-    # hmm...unless might work better here, I'm wondering how it know the board[row][column] is not empty...
     if board[row][column]
       raise ArgumentError, "This spot is not empty."
     else
