@@ -33,8 +33,7 @@ class Game < ActiveRecord::Base
     # will call on current player
 
     (0..8).each do |num|
-      update_board(current_player(num), board[row], board[row][column])
-      # how does it know to I 
+      update_board(current_player(num), board[row], board[row][column]) # this needs work!
     end
 
   end
