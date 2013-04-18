@@ -1,17 +1,18 @@
 class Game < ActiveRecord::Base
   serialize :board
+  
   # This line tells Rails which attributes of the model are accessible, i.e., 
   # which attributes can be modified automatically by outside users 
   # (such as users submitting requests with web browsers).
-	attr_accessible :board, :current_player, :status, :player_o, :player_x, 
+  attr_accessible :board, :current_player, :status, :player_o, :player_x, 
 
 	def initialize
     super
-		self.board = Array.new(3).map{[nil, nil, nil]}
+		self.board = Array.new(3).map{[nil, nil, nil]} 
 	end
 
-	# This could be refactored to use @player_o and @player_x
 	def update_board(player, row, column)
+    # hmm...unless might work better here, I'm wondering how it know the board[row][column] is not empty...
     if board[row][column]
       raise ArgumentError, "This spot is not empty."
     else
@@ -20,8 +21,29 @@ class Game < ActiveRecord::Base
     end
 	end
 
+  def current_player(turn)
+    if turn.even?
+      'x'
+    else
+      'o'
+    end
+  end
+
+  def play
+    # will call on update board
+    # will call on current player
+
+    (0..8).each do |num|
+      update_board(current_player(num), board[row], board[row][column])
+      # how does it know to I 
+    end
+
+  end
+
   # This might not actually be necessary. In the views, we can draw a permanent grid
-  # and insert the value of each cell into it.
+  # and insert the value of each cell into it. 
+  # Would be helpful to have so people can play before they get to the views
+  # ...might have this under a helper module
 	def display_board
     	"#{display_line(0)}" +
 	  	"- - -\n" +
@@ -44,9 +66,7 @@ class Game < ActiveRecord::Base
   end
 
   # TODO
-  # Make sure changes to board are saved in database
   # Only create default values for the board in the db OR initialize it in the model, not both!
-  # Validate that space in board is empty before allowing anything to be inserted into the board
   # Play method
   # winner?
   # current_player (maybe - is it necessary?)

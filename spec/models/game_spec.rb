@@ -32,15 +32,35 @@ describe Game do
       @test_game.update_board('x', 0, 0)
       lambda { @test_game.update_board('x', 0, 0) }.should raise_error(ArgumentError)
     end
-	end
 
     it "should be saved to the database" do
-    	game = @test_game.update_board('x', 2, 1)
-    	saved_game = Game.all.find { |g| g.id == 2 }
+    	@test_game.update_board('x', 2, 1)
+    	saved_game = Game.all.find { |g| g.id == 1 }
     	saved_game.display_element(2, 1).should == 'x'
+    	
     	# TODO explain the error in our documentation 
+    
     end
 	end
+
+	describe "set_player" do
+		it "should set first player to 'x' " do
+			@test_game.set_player.should == 'x'
+		end
+
+		it "should set next player to 'o' " do
+			@test_game.set_player.should == 'o'
+		end
+	end
+
+	# describe "play" do 
+	# 	xit "first player should be 'x' if board is empty"
+	# 	# 	game = Game.new
+	# 	# 	game.current_player.should == 'x'
+	# 	# end
+
+	# 	xit "should set next player after current player"
+	# end
 
 	describe "display_element" do
 		it "should display @board element" do
@@ -75,7 +95,7 @@ describe Game do
 	 										   								 " | | \n" +
       										   						 "- - -\n" +
 	 										   								 " | | \n"
-	end
+		end
 
   	it "should display player marks on the board" do
    		@test_game.update_board('x', 0, 0)
