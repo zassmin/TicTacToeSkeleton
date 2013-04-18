@@ -5,7 +5,7 @@ class Game < ActiveRecord::Base
   # (such as users submitting requests with web browsers).
 	attr_accessible :board, :current_player, :status, :player_o, :player_x, 
 
-	def initialize 
+	def initialize
     super
 		self.board = Array.new(3).map{[nil, nil, nil]}
 	end
@@ -51,8 +51,3 @@ class Game < ActiveRecord::Base
   # winner?
   # current_player (maybe - is it necessary?)
 end
-
-# board = Game.new
-# board.assign_player_position('x', 0, 1)
-# board.assign_player_position('o', 0, 2)
-# puts board.display_board

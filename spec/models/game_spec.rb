@@ -9,8 +9,8 @@ describe Game do
 	describe "board" do
 		it "should be initialized with nil values inside of the array, [[]]" do
 			@test_game.board.should == [[nil, nil, nil], 
-									    [nil, nil, nil], 
-									    [nil, nil, nil]] 
+									    						[nil, nil, nil], 
+									    						[nil, nil, nil]] 
 		end
 
 		it "should always have a length of 3" do 
@@ -31,6 +31,14 @@ describe Game do
     it "should not allow an 'x' or 'o' to be inserted into an already full spot" do
       @test_game.update_board('x', 0, 0)
       lambda { @test_game.update_board('x', 0, 0) }.should raise_error(ArgumentError)
+    end
+	end
+
+    it "should be saved to the database" do
+    	game = @test_game.update_board('x', 2, 1)
+    	saved_game = Game.all.find { |g| g.id == 2 }
+    	saved_game.display_element(2, 1).should == 'x'
+    	# TODO explain the error in our documentation 
     end
 	end
 
@@ -60,25 +68,25 @@ describe Game do
 		end
 	end
 
-  	describe "display_board" do 
+  describe "display_board" do 
 	 	it "should display board" do 
 	 		@test_game.display_board.should == " | | \n" + 
-	 										   "- - -\n" +
-	 										   " | | \n" +
-      										   "- - -\n" +
-	 										   " | | \n"
-	 	end
+	 										   								 "- - -\n" +
+	 										   								 " | | \n" +
+      										   						 "- - -\n" +
+	 										   								 " | | \n"
+	end
 
-    	it "should display player marks on the board" do
-    		@test_game.update_board('x', 0, 0)
-    		@test_game.update_board('o', 1, 1)
-    		@test_game.update_board('x', 2, 2)
+  	it "should display player marks on the board" do
+   		@test_game.update_board('x', 0, 0)
+ 			@test_game.update_board('o', 1, 1)
+ 			@test_game.update_board('x', 2, 2)
 
-    		@test_game.display_board.should == "x| | \n" + 
-	 										   "- - -\n" +
-	 									   	   " |o| \n" +
-      										   "- - -\n" +
-	 										   " | |x\n"
+   		@test_game.display_board.should == "x| | \n" + 
+	 										   								 "- - -\n" +
+	 									   	   							 " |o| \n" +
+      										   						 "- - -\n" +
+	 										                   " | |x\n"
 		end
 	end
 end
