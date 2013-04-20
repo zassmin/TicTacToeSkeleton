@@ -122,5 +122,21 @@ describe Game do
     it "should be false if all elements in a column are nil" do
       @test_game.winner?.should == false
     end
+
+    it "should be true if there are three in a row at a slant from left to right" do
+      @test_game.update_board('x', 0, 0)
+      @test_game.update_board('x', 1, 1)
+      @test_game.update_board('x', 2, 2)
+
+      @test_game.winner?.should == true
+    end
+
+    it "should be true if there are three in a row at a slant from left to right" do
+      @test_game.update_board('x', 0, 2)
+      @test_game.update_board('x', 1, 1)
+      @test_game.update_board('x', 2, 0)
+
+      @test_game.winner?.should == true
+    end
   end
 end

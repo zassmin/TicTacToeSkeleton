@@ -58,16 +58,30 @@ class Game < ActiveRecord::Base
         return board[0][e] == board[1][e] && board[0][e] == board[2][e]
       end
     end
-    return false
+    false
+  end
+
+  def check_slants_for_winner
+    if board[1][1]
+      if board[0][0] == board[1][1] && board[0][0] == board[2][2]
+        true
+      elsif board[0][2] == board[1][1] && board[0][2] == board[2][0]
+        true
+      end
+    else
+      false
+    end
   end
 
   def winner?
     if check_rows_for_winner
-      return true
+      true
     elsif check_columns_for_winner
-      return true
+      true
+    elsif check_slants_for_winner
+      true
     else
-      return false
+      false
     end
   end
   # TODO
