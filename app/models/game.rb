@@ -85,12 +85,8 @@ class Game < ActiveRecord::Base
     end
   end
   # TODO
-  # Test changes to board are saved in database in specs
-  # Check whether we need to clear the test database in between tests
   # Only create default values for the board in the db OR initialize it in the model, not both!
-  # Validate that space in board is empty before allowing anything to be inserted into the board
   # Play method
-  # winner?
   # current_player (maybe - is it necessary?)
 end
 
