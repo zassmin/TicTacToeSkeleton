@@ -43,6 +43,33 @@ class Game < ActiveRecord::Base
  		"#{display_element(row,0)}|#{display_element(row,1)}|#{display_element(row,2)}\n"
   end
 
+  def check_rows_for_winner
+    board.each do |a|
+      if a[0]
+        return a[0] == a[1] && a[0] == a[2]
+      end
+    end
+    return false
+  end
+
+  def check_columns_for_winner
+    (0..2).each do |e|
+      if board[0][e]
+        return board[0][e] == board[1][e] && board[0][e] == board[2][e]
+      end
+    end
+    return false
+  end
+
+  def winner?
+    if check_rows_for_winner
+      return true
+    elsif check_columns_for_winner
+      return true
+    else
+      return false
+    end
+  end
   # TODO
   # Test changes to board are saved in database in specs
   # Check whether we need to clear the test database in between tests
