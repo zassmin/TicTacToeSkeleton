@@ -1,7 +1,6 @@
 # GamesController_controller_spec
 
 require 'spec_helper'
-require 'games_controller'
 
 describe GamesController do
 	describe "GET games#index" do
