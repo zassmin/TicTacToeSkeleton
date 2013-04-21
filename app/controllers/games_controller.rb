@@ -7,12 +7,4 @@ class GamesController < ApplicationController
 	def new
 		@game = Game.new
 	end
-
-  #  def update
-  #    # insert an O or an X
-  #  end
-  #
-  #  def destroy
-  #    # delete game
-  # end
 end
