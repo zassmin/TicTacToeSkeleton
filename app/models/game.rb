@@ -32,6 +32,14 @@ class Game < ActiveRecord::Base
   # @param column [Integer] 0-2
   # @return [Boolean] Save successful?
   def update_board(player, row, column)
+    unless player.in? %w(o x)
+      raise ArgumentError, "Player must be either 'x' or 'o'."
+    end
+
+    unless row.in? (0...3) && column.in? (0...3)
+      raise ArgumentError, "Row and Column must be within range. (0-2)"
+    end
+
     if board[row][column]
       raise ArgumentError, "This spot is full."
     else
@@ -41,25 +49,47 @@ class Game < ActiveRecord::Base
   end
 
   # Returns the current player
-  #
-  # TODO: Removing? or changing?
-  def current_player(turn)
-    if turn.even?
+  # @return [String] 'x' or 'o'
+  def current_player
+    turn_num = self.board.flatten.compact.count
+    if turn_num.even?
       'x'
     else
       'o'
     end
   end
 
+  def previous_player
+    current_player == 'x' ? 'o' : 'x'
+  end
+
+
   def play(row, column)
     if winner?
-      @turn -= 1
-      "Player #{current_player(@turn)} is the winner!"
+      "Player #{previous_player} is the winner!"
     else
-      update_board(current_player(@turn), row, column)
-      @turn += 1
+      update_board(current_player, row, column)
     end
   end
+
+  # Checks if there is a winner.
+  # TODO / NOTE: I would prefer to see this method return the winner, or nil
+  # @return [Boolean] returns true if there is a winner, false otherwise
+  def winner?
+    if check_rows_for_winner
+      true
+    elsif check_columns_for_winner
+      true
+    elsif check_diagonals_for_winner
+      true
+    else
+      false
+    end
+  end
+
+
+  # The below methods can only be accessed by methods in this class
+  private
 
   def check_rows_for_winner
     board.each do |a|
@@ -91,17 +121,6 @@ class Game < ActiveRecord::Base
     end
   end
 
-  def winner?
-    if check_rows_for_winner
-      true
-    elsif check_columns_for_winner
-      true
-    elsif check_diagonals_for_winner
-      true
-    else
-      false
-    end
-  end
 end
 
 # TODO
