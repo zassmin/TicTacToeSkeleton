@@ -9,8 +9,8 @@ describe Game do
 	describe "board" do
 		it "should be initialized with nil values inside of the array, [[]]" do
 			@test_game.board.should == [[nil, nil, nil], 
-									    [nil, nil, nil], 
-									    [nil, nil, nil]] 
+									    						[nil, nil, nil], 
+									    						[nil, nil, nil]] 
 		end
 
 		it "should always have a length of 3" do 
@@ -32,6 +32,42 @@ describe Game do
       @test_game.update_board('x', 0, 0)
       lambda { @test_game.update_board('x', 0, 0) }.should raise_error(ArgumentError)
     end
+
+    it "should be saved to the database" do
+    	@test_game.update_board('x', 2, 1)
+    	saved_game = Game.all.find { |g| g.id == 1 }
+    	saved_game.display_element(2, 1).should == 'x'
+    	
+    	# TODO explain error, nil:nilclass, in our documentation 
+    
+    end
+	end
+
+	describe "current_player" do
+		it "should set even number player to 'x' " do
+			@test_game.current_player(0).should == 'x'
+		end
+
+		it "should set odd number player to 'o' " do
+			@test_game.current_player(1).should == 'o'
+		end
+	end
+
+	describe "play" do 
+	  it "should set the first player, 'x', to a position on the board" do
+	  	@test_game.play(0, 1)
+			@test_game.board.should == [[nil, 'x', nil], 
+									    					  [nil, nil, nil], 
+									    					  [nil, nil, nil]]
+		end
+
+		it "should set the second player, 'o', to a position on the board" do
+		 	@test_game.play(0, 1)
+		 	@test_game.play(2, 1)
+		 	@test_game.board.should == [[nil, 'x', nil], 
+									    					  [nil, nil, nil], 
+									    					  [nil, 'o', nil]]
+		end
 	end
 
 	describe "display_element" do
@@ -63,10 +99,22 @@ describe Game do
   describe "display_board" do 
 	 	it "should display board" do 
 	 		@test_game.display_board.should == " | | \n" + 
-	 										   "- - -\n" +
-	 										   " | | \n" +
-   										   "- - -\n" +
-	 										   " | | \n"
+	 										   								 "- - -\n" +
+	 										   								 " | | \n" +
+      										   						 "- - -\n" +
+	 										   								 " | | \n"
+		end
+
+  	it "should display player marks on the board" do
+   		@test_game.update_board('x', 0, 0)
+ 			@test_game.update_board('o', 1, 1)
+ 			@test_game.update_board('x', 2, 2)
+
+   		@test_game.display_board.should == "x| | \n" + 
+	 										   								 "- - -\n" +
+	 									   	   							 " |o| \n" +
+      										   						 "- - -\n" +
+	 										                   " | |x\n"
 	 	end
 
   	it "should display player marks on the board" do
@@ -75,10 +123,10 @@ describe Game do
   		@test_game.update_board('x', 2, 2)
 
   		@test_game.display_board.should == "x| | \n" + 
- 										   "- - -\n" +
- 									   	   " |o| \n" +
-    										   "- - -\n" +
- 										   " | |x\n"
+ 										   									 "- - -\n" +
+ 									   	  								 " |o| \n" +
+    										  							 "- - -\n" +
+ 										  									 " | |x\n"
 		end
 	end
 
