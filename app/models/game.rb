@@ -32,9 +32,13 @@ class Game < ActiveRecord::Base
   end
 
   def play(row, column)
-    update_board(current_player(@turn), row, column)
-
-    @turn += 1
+    if winner?
+      @turn -= 1
+      "Player #{current_player(@turn)} is the winner!"
+    else
+      update_board(current_player(@turn), row, column)
+      @turn += 1
+    end
   end
 
   # This might not actually be necessary. In the views, we can draw a permanent grid
@@ -80,7 +84,7 @@ class Game < ActiveRecord::Base
     false
   end
 
-  def check_slants_for_winner
+  def check_diagnols_for_winner
     if board[1][1]
       if board[0][0] == board[1][1] && board[0][0] == board[2][2]
         true
@@ -97,7 +101,7 @@ class Game < ActiveRecord::Base
       true
     elsif check_columns_for_winner
       true
-    elsif check_slants_for_winner
+    elsif check_diagnols_for_winner
       true
     else
       false
