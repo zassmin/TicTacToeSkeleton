@@ -1,6 +1,4 @@
 require 'spec_helper'
-require 'game'
-require 'games_helper'
 
 describe Game do 
 	before do

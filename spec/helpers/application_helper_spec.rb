@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'application_helper'
 
 describe 'ApplicationHelper' do
   

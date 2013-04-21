@@ -9,7 +9,6 @@ describe "Games" do
     it { should have_selector('title', text: full_title(page_title)) }
   end
 
-  # doesn't like visit - it's a capybara thing
   describe "Index page" do
     before { visit root_path }
 
