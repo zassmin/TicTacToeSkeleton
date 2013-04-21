@@ -23,11 +23,11 @@ class Game < ActiveRecord::Base
   # This might not actually be necessary. In the views, we can draw a permanent grid
   # and insert the value of each cell into it.
 	def display_board
-    	"#{display_line(0)}" +
-	  	"- - -\n" +
-    	"#{display_line(1)}" +
-		  "- - -\n" +
-    	"#{display_line(2)}"
+  	"#{display_line(0)}" +
+  	"- - -\n" +
+  	"#{display_line(1)}" +
+	  "- - -\n" +
+  	"#{display_line(2)}"
 	end
 
 	def display_element(row, column)
@@ -43,16 +43,54 @@ class Game < ActiveRecord::Base
  		"#{display_element(row,0)}|#{display_element(row,1)}|#{display_element(row,2)}\n"
   end
 
+  def check_rows_for_winner
+    board.each do |a|
+      if a[0]
+        return a[0] == a[1] && a[0] == a[2]
+      end
+    end
+    return false
+  end
+
+  def check_columns_for_winner
+    (0..2).each do |e|
+      if board[0][e]
+        return board[0][e] == board[1][e] && board[0][e] == board[2][e]
+      end
+    end
+    false
+  end
+
+  def check_slants_for_winner
+    if board[1][1]
+      if board[0][0] == board[1][1] && board[0][0] == board[2][2]
+        true
+      elsif board[0][2] == board[1][1] && board[0][2] == board[2][0]
+        true
+      end
+    else
+      false
+    end
+  end
+
+  def winner?
+    if check_rows_for_winner
+      true
+    elsif check_columns_for_winner
+      true
+    elsif check_slants_for_winner
+      true
+    else
+      false
+    end
+  end
   # TODO
-  # Make sure changes to board are saved in database
   # Only create default values for the board in the db OR initialize it in the model, not both!
-  # Validate that space in board is empty before allowing anything to be inserted into the board
   # Play method
-  # winner?
   # current_player (maybe - is it necessary?)
 end
 
 # board = Game.new
-# board.assign_player_position('x', 0, 1)
-# board.assign_player_position('o', 0, 2)
+# board.update_board('x', 0, 1)
+# board.update_board('o', 0, 2)
 # puts board.display_board

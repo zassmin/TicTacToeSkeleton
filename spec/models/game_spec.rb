@@ -60,25 +60,83 @@ describe Game do
 		end
 	end
 
-  	describe "display_board" do 
+  describe "display_board" do 
 	 	it "should display board" do 
 	 		@test_game.display_board.should == " | | \n" + 
 	 										   "- - -\n" +
 	 										   " | | \n" +
-      										   "- - -\n" +
+   										   "- - -\n" +
 	 										   " | | \n"
 	 	end
 
-    	it "should display player marks on the board" do
-    		@test_game.update_board('x', 0, 0)
-    		@test_game.update_board('o', 1, 1)
-    		@test_game.update_board('x', 2, 2)
+  	it "should display player marks on the board" do
+  		@test_game.update_board('x', 0, 0)
+  		@test_game.update_board('o', 1, 1)
+  		@test_game.update_board('x', 2, 2)
 
-    		@test_game.display_board.should == "x| | \n" + 
-	 										   "- - -\n" +
-	 									   	   " |o| \n" +
-      										   "- - -\n" +
-	 										   " | |x\n"
+  		@test_game.display_board.should == "x| | \n" + 
+ 										   "- - -\n" +
+ 									   	   " |o| \n" +
+    										   "- - -\n" +
+ 										   " | |x\n"
 		end
 	end
+
+  describe "winner?" do
+    it "should be true if the first row is filled with the same letter" do
+      @test_game.update_board('x', 0, 0)
+      @test_game.update_board('x', 0, 1)
+      @test_game.update_board('x', 0, 2)
+
+      @test_game.winner?.should == true
+    end
+    
+    it "should be true if the second row is filled with the same letter" do
+      @test_game.update_board('o', 1, 0)
+      @test_game.update_board('o', 1, 1)
+      @test_game.update_board('o', 1, 2)
+
+      @test_game.winner?.should == true
+    end
+
+    it "should be false if elements in any row are not the same" do
+      @test_game.update_board('x', 0, 0)
+      @test_game.update_board('o', 0, 1)
+      @test_game.update_board('x', 0, 2)
+
+      @test_game.winner?.should == false
+    end
+
+    it "should be false if elements are all still nil" do
+      @test_game.winner?.should == false
+    end
+
+    it "should be true if all elements in a column are filled with the same letter" do
+      @test_game.update_board('x', 0, 0)
+      @test_game.update_board('x', 1, 0)
+      @test_game.update_board('x', 2, 0)
+
+      @test_game.winner?.should == true
+    end
+
+    it "should be false if all elements in a column are nil" do
+      @test_game.winner?.should == false
+    end
+
+    it "should be true if there are three in a row at a slant from left to right" do
+      @test_game.update_board('x', 0, 0)
+      @test_game.update_board('x', 1, 1)
+      @test_game.update_board('x', 2, 2)
+
+      @test_game.winner?.should == true
+    end
+
+    it "should be true if there are three in a row at a slant from left to right" do
+      @test_game.update_board('x', 0, 2)
+      @test_game.update_board('x', 1, 1)
+      @test_game.update_board('x', 2, 0)
+
+      @test_game.winner?.should == true
+    end
+  end
 end
