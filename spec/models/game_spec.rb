@@ -38,7 +38,7 @@ describe Game do
     	saved_game = Game.all.find { |g| g.id == 1 }
     	saved_game.display_element(2, 1).should == 'x'
     	
-    	# TODO explain error, nil:nilclass, in our documentation 
+    # TODO explain error, nil:nilclass, in our documentation 
     
     end
 	end
@@ -67,6 +67,15 @@ describe Game do
 		 	@test_game.board.should == [[nil, 'x', nil], 
 									    					  [nil, nil, nil], 
 									    					  [nil, 'o', nil]]
+		end
+
+		it "should determine which player won with a message!" do
+			@test_game.play(0,0)
+			@test_game.play(1,0)
+			@test_game.play(0,1)
+			@test_game.play(1,1)
+			@test_game.play(0,2)
+			@test_game.play(1,2).should == "Player x is the winner!"
 		end
 	end
 
