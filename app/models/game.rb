@@ -1,6 +1,8 @@
 class Game < ActiveRecord::Base
   serialize :board
   
+  include GamesHelper
+
   # This line tells Rails which attributes of the model are accessible, i.e., 
   # which attributes can be modified automatically by outside users 
   # (such as users submitting requests with web browsers).
@@ -39,31 +41,6 @@ class Game < ActiveRecord::Base
       update_board(current_player(@turn), row, column)
       @turn += 1
     end
-  end
-
-  # This might not actually be necessary. In the views, we can draw a permanent grid
-  # and insert the value of each cell into it. 
-  # Would be helpful to have so people can play before they get to the views
-  # ...might have this under a helper module
-	def display_board
-  	"#{display_line(0)}" +
-  	"- - -\n" +
-  	"#{display_line(1)}" +
-	  "- - -\n" +
-  	"#{display_line(2)}"
-	end
-
-	def display_element(row, column)
-		element = board[row][column]
-		if element
-			element
-		else
-			' '
-		end
-	end
-
-  def display_line(row)
- 		"#{display_element(row,0)}|#{display_element(row,1)}|#{display_element(row,2)}\n"
   end
 
   def check_rows_for_winner
