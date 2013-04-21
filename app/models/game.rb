@@ -6,25 +6,43 @@ class Game < ActiveRecord::Base
   # This line tells Rails which attributes of the model are accessible, i.e., 
   # which attributes can be modified automatically by outside users 
   # (such as users submitting requests with web browsers).
-  attr_accessible :board, :current_player, :status, :player_o, :player_x, 
+  attr_accessible :board, :current_player, :status, :player_o, :player_x
 
-	def initialize
+  validates_with BoardValidator
+
+  # Initializes the object with a board, made up of a two dimensional array of
+  # nils. Eg
+  #   board = [ [nil, nil, nil],
+  #             [nil, nil, nil],
+  #             [nil, nil, nil]  ]
+  #
+  # This is called when you use `Game.new` or `Game.create!`.
+  def initialize
     super
-		self.board = Array.new(3).map{[nil, nil, nil]} 
-    
+    self.board = Array.new(3).map{[nil, nil, nil]} 
+
     # to increment player turn in #play
     @turn = 0
-	end
+  end
 
-	def update_board(player, row, column)
+  # Updates the board based on player, row, and column
+  #
+  # @param player [String] either 'x' or 'o'
+  # @param row [Integer] 0-2
+  # @param column [Integer] 0-2
+  # @return [Boolean] Save successful?
+  def update_board(player, row, column)
     if board[row][column]
       raise ArgumentError, "This spot is full."
     else
-		  board[row][column] = player
+      board[row][column] = player
       self.save
     end
-	end
+  end
 
+  # Returns the current player
+  #
+  # TODO: Removing? or changing?
   def current_player(turn)
     if turn.even?
       'x'
@@ -61,7 +79,7 @@ class Game < ActiveRecord::Base
     false
   end
 
-  def check_diagnols_for_winner
+  def check_diagonals_for_winner
     if board[1][1]
       if board[0][0] == board[1][1] && board[0][0] == board[2][2]
         true
@@ -78,7 +96,7 @@ class Game < ActiveRecord::Base
       true
     elsif check_columns_for_winner
       true
-    elsif check_diagnols_for_winner
+    elsif check_diagonals_for_winner
       true
     else
       false
