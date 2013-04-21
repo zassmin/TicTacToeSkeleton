@@ -38,29 +38,37 @@ describe Game do
     	saved_game = Game.all.find { |g| g.id == 1 }
     	saved_game.display_element(2, 1).should == 'x'
     	
-    	# TODO explain the error in our documentation 
+    	# TODO explain error, nil:nilclass, in our documentation 
     
     end
 	end
 
-	describe "set_player" do
-		it "should set first player to 'x' " do
-			@test_game.set_player.should == 'x'
+	describe "current_player" do
+		it "should set even number player to 'x' " do
+			@test_game.current_player(0).should == 'x'
 		end
 
-		it "should set next player to 'o' " do
-			@test_game.set_player.should == 'o'
+		it "should set odd number player to 'o' " do
+			@test_game.current_player(1).should == 'o'
 		end
 	end
 
-	# describe "play" do 
-	# 	xit "first player should be 'x' if board is empty"
-	# 	# 	game = Game.new
-	# 	# 	game.current_player.should == 'x'
-	# 	# end
+	describe "play" do 
+	  it "should set the first player, 'x', to a position on the board" do
+	  	@test_game.play(0, 1)
+			@test_game.board.should == [[nil, 'x', nil], 
+									    					  [nil, nil, nil], 
+									    					  [nil, nil, nil]]
+		end
 
-	# 	xit "should set next player after current player"
-	# end
+		it "should set the second player, 'o', to a position on the board" do
+		 	@test_game.play(0, 1)
+		 	@test_game.play(2, 1)
+		 	@test_game.board.should == [[nil, 'x', nil], 
+									    					  [nil, nil, nil], 
+									    					  [nil, 'o', nil]]
+		end
+	end
 
 	describe "display_element" do
 		it "should display @board element" do

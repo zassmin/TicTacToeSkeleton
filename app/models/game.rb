@@ -9,11 +9,14 @@ class Game < ActiveRecord::Base
 	def initialize
     super
 		self.board = Array.new(3).map{[nil, nil, nil]} 
+    
+    # to increment player turn in #play
+    @turn = 0
 	end
 
 	def update_board(player, row, column)
     if board[row][column]
-      raise ArgumentError, "This spot is not empty."
+      raise ArgumentError, "This spot is full."
     else
 		  board[row][column] = player
       self.save
@@ -28,14 +31,10 @@ class Game < ActiveRecord::Base
     end
   end
 
-  def play
-    # will call on update board
-    # will call on current player
+  def play(row, column)
+    update_board(current_player(@turn), row, column)
 
-    (0..8).each do |num|
-      update_board(current_player(num), board[row], board[row][column]) # this needs work!
-    end
-
+    @turn += 1
   end
 
   # This might not actually be necessary. In the views, we can draw a permanent grid
@@ -65,7 +64,4 @@ class Game < ActiveRecord::Base
 
   # TODO
   # Only create default values for the board in the db OR initialize it in the model, not both!
-  # Play method
-  # winner?
-  # current_player (maybe - is it necessary?)
 end
