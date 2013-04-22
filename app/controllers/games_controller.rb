@@ -8,8 +8,10 @@ class GamesController < ApplicationController
 		@game = Game.new
 	end
 
-  # create is saving a new game
-
+  def create 
+    #is saving a new game
+  end
+  
   # show will show the new game board
 
   # destroy
