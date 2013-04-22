@@ -89,6 +89,15 @@ p {
       width: 200px;
       height: 200px;
     }
+    a {
+      background-color: #C299FF;
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      &:hover {
+        background-color: #B8B8FF;
+      }
+    }
   }
 }
 
