@@ -2,13 +2,14 @@ class Game < ActiveRecord::Base
   serialize :board
   
   include GamesHelper
+  include ActiveModel::Validations
 
   # This line tells Rails which attributes of the model are accessible, i.e., 
   # which attributes can be modified automatically by outside users 
   # (such as users submitting requests with web browsers).
   attr_accessible :board, :current_player, :status, :player_o, :player_x
 
-  validates_with BoardValidator
+  validates :board, :presence => true
 
   # Initializes the object with a board, made up of a two dimensional array of
   # nils. Eg
@@ -20,9 +21,6 @@ class Game < ActiveRecord::Base
   def initialize
     super
     self.board = Array.new(3).map{[nil, nil, nil]} 
-
-    # to increment player turn in #play
-    @turn = 0
   end
 
   # Updates the board based on player, row, and column
@@ -44,7 +42,7 @@ class Game < ActiveRecord::Base
       raise ArgumentError, "This spot is full."
     else
       board[row][column] = player
-      self.save
+      self.save!
     end
   end
 

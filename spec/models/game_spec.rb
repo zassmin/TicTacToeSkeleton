@@ -43,12 +43,13 @@ describe Game do
 	end
 
 	describe "current_player" do
-		it "should set even number player to 'x' " do
-			@test_game.current_player(0).should == 'x'
+		it "should set even turns to player 'x' " do
+			@test_game.current_player.should == 'x'
 		end
 
-		it "should set odd number player to 'o' " do
-			@test_game.current_player(1).should == 'o'
+		it "should set odd turns to player 'o' " do
+			@test_game.play(2, 0)
+      @test_game.current_player.should == 'o'
 		end
 	end
 
