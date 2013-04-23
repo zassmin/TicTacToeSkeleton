@@ -18,8 +18,8 @@ describe "Games" do
     it_should_behave_like "all games pages"
   end
 
-  describe "New page" do
-    before { visit new_path }
+  describe "Show page" do
+    before { visit show_path }
 
     let(:heading)    { 'Play Game' }
     let(:page_title) { 'Play Game' }

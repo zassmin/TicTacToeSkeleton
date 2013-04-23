@@ -36,7 +36,7 @@ class Game < ActiveRecord::Base
       raise ArgumentError, "Player must be either 'x' or 'o'."
     end
 
-    unless row.in? (0...3) && column.in? (0...3)
+    unless row.in?(0..2) && column.in?(0..2)
       raise ArgumentError, "Row and Column must be within range. (0-2)"
     end
 
