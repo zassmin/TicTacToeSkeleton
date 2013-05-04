@@ -4,25 +4,30 @@ class GamesController < ApplicationController
 
 	def index
 		@games = Game.all
+    puts @games.inspect
 	end
-  puts @games.inspect
 
+  # NOTE create method is the same refactor after deciding which to use
   #path /new
 	def new
 		@game = Game.new
-    redirect_to show_path, :status => 301
+    @game.save!
+    redirect_to :action => 'show', :id => @game.id
 	end
-  puts @game.inspect
  
   def show
-    if Game.exists?(params[:id])
-      @game = Game.find(params[:id])
-    end
+    @game = Game.find(params[:id])
   end
   
-  def create
-     @game = Game.create!
-  end
+  # def create
+	# 	@game = Game.new
+  #   @game.save!
+  #   redirect_to show_path, :id => @game.id
+  # end
+
+  # def update(row, column)
+  #   @game.play(row, column)
+  # end
 
   def destroy
   end

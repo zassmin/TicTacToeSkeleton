@@ -3,8 +3,8 @@
 <h1>Play Game</h1>
 <table id=board>
   <tr>
-    <td class="left top"><%= @game.play(0,0) %><a href="#"></a></td>
-    <td class="top vertical-mid"><a href="#"></a></td>
+    <td class="left top"><a href="#"><%= @game.board[0][0] || 'NOTHING HERE' %></a></td>
+    <td class="top vertical-mid"><a href="#"><%= @game.play(0,1) %></a></td>
     <td class="top right"><a href="#"></a></td>
   </tr>
   

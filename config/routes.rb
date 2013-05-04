@@ -22,8 +22,8 @@ TicTacToe::Application.routes.draw do
 
   resources :games
   root to: 'games#index'
-  post '/games/:id/play' => 'games#play', :as => 'play'
+  # post '/games/:id/play' => 'games#play', :as => 'play'
   match '/new',  to: 'games#new' 
   match '/show', to: 'games#show'
-  match '/edit', to: 'games#edit'
+  # match '/edit', to: 'games#edit'
 end

@@ -18,6 +18,7 @@ class Game < ActiveRecord::Base
   #             [nil, nil, nil]  ]
   #
   # This is called when you use `Game.new` or `Game.create!`.
+  # NOTE ActiveRecord::Base does not have a #create method.
   def initialize
     super
     self.board = Array.new(3).map{[nil, nil, nil]} 
