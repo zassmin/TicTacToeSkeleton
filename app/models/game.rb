@@ -120,6 +120,3 @@ class Game < ActiveRecord::Base
   end
 
 end
-
-# TODO
-# Only create default values for the board in the db OR initialize it in the model, not both!

@@ -2,13 +2,18 @@
 #
 #   Route name      | Verb   | Path                        | Controller#Action
 #   ---------------------------------------------------------------------------
-#   games            GET      /games(.:format)               games#index
-#                    POST     /games(.:format)               games#create
-#   new_game         GET      /games/new(.:format)           games#new
-#   edit_game        GET      /games/:id/edit(.:format)      games#edit
-#   game             GET      /games/:id(.:format)           games#show
-#                    PUT      /games/:id(.:format)           games#update
-#                    DELETE   /games/:id(.:format)           games#destroy
+#   games             GET      /games(.:format)              games#index
+#                     POST     /games(.:format)              games#create
+#   new_game          GET      /games/new(.:format)          games#new
+#   edit_game         GET      /games/:id/edit(.:format)     games#edit
+#   game              GET      /games/:id(.:format)          games#show
+#                     PUT      /games/:id(.:format)          games#update
+#                     DELETE   /games/:id(.:format)          games#destroy
+#   root                       /                             games#index
+#   play              POST     /games/:id/play(.:format)     games#play
+#   new                        /new(.:format)                games#new
+#   show                       /show(.:format)               games#show
+#   edit                       /edit(.:format)               games#edit
 
 TicTacToe::Application.routes.draw do
 
