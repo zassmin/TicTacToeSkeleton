@@ -1,11 +1,20 @@
+<% @controller = GamesController.new %>
 <% provide(:title, 'Play Game') %>
 <br/>
 <h1>Play Game</h1>
 <table id=board>
   <tr>
-    <td class="left top"><a href="#"><%= @game.board[0][0] || 'NOTHING HERE' %></a></td>
-    <td class="top vertical-mid"><a href="#"><%= @game.play(0,1) %></a></td>
-    <td class="top right"><a href="#"></a></td>
+
+    <td class="left top">
+      <% if @game.board[0][0] %>
+        <%= @game.board[0][0] %>
+      <% else %>
+       <%= render :partial => "board_form", :locals => { 
+      :game => @game, :row => 0, :column => 0 } %>
+      <% end %>
+    </td>
+    <td class="top vertical-mid"><a href="#"></a></td>
+    <td class="top right"><a href="#"></td>
   </tr>
   
   <tr>
@@ -20,3 +29,8 @@
     <td class="bottom right"><a href="#"></a></td>
   </tr>
 </table>
+
+
+ <%= @game.board %>
+ <%= @game.winner? %>
+
