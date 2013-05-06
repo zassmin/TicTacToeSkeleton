@@ -1,0 +1,6 @@
+<%= form_for(game) do |g| %>
+  <%= g.hidden_field :row, :value => row %>
+  <%= g.hidden_field :column, :value => column %>
+      
+  <%= g.submit "play", class: "btn btn-large btn-primary" %>
+<% end %>
