@@ -4,29 +4,82 @@
 <h1>Play Game</h1>
 <table id=board>
   <tr>
-
-    <td class="left top">
+    <td >
       <% if @game.board[0][0] %>
         <%= @game.board[0][0] %>
       <% else %>
-       <%= render :partial => "board_form", :locals => { 
-      :game => @game, :row => 0, :column => 0 } %>
+        <%= render :partial => "board_form", :locals => { 
+        :game => @game, :row => 0, :column => 0 } %>
       <% end %>
     </td>
-    <td class="top vertical-mid"><a href="#"></a></td>
-    <td class="top right"><a href="#"></td>
+    <td >
+      <% if @game.board[0][1] %>
+        <%= @game.board[0][1] %>
+      <% else %>
+        <%= render :partial => "board_form", :locals => { 
+        :game => @game, :row => 0, :column => 1 } %>
+      <% end %>
+    </td>
+    <td >
+      <% if @game.board[0][2] %>
+        <%= @game.board[0][2] %>
+      <% else %>
+        <%= render :partial => "board_form", :locals => { 
+        :game => @game, :row => 0, :column => 2 } %>
+      <% end %>
+    </td>
   </tr>
-  
   <tr>
-    <td class="left horizontal-mid"><a href="#"></a></td>
-    <td class="vertical-mid horizontal-mid"><a href="#"></a></td>
-    <td class="right horizontal-mid"><a href="#"></a></td>
+    <td >
+      <% if @game.board[1][0] %>
+        <%= @game.board[1][0] %>
+      <% else %>
+        <%= render :partial => "board_form", :locals => { 
+        :game => @game, :row => 1, :column => 0 } %>
+      <% end %>
+    </td>
+    <td >
+      <% if @game.board[1][1] %>
+        <%= @game.board[1][1] %>
+      <% else %>
+        <%= render :partial => "board_form", :locals => { 
+        :game => @game, :row => 1, :column => 1 } %>
+      <% end %>
+    </td>
+    <td >
+      <% if @game.board[1][2] %>
+        <%= @game.board[1][2] %>
+      <% else %>
+        <%= render :partial => "board_form", :locals => { 
+        :game => @game, :row => 1, :column => 2 } %>
+      <% end %>
+    </td>
   </tr>
-
   <tr>
-    <td class="left bottom"><a href="#"></a></td>
-    <td class="bottom vertical-mid"><a href="#"></a></td>
-    <td class="bottom right"><a href="#"></a></td>
+    <td >
+      <% if @game.board[2][0] %>
+        <%= @game.board[2][0] %>
+      <% else %>
+        <%= render :partial => "board_form", :locals => { 
+        :game => @game, :row => 2, :column => 0 } %>
+      <% end %>
+    </td>
+    <td >
+      <% if @game.board[2][1] %>
+        <%= @game.board[2][1] %>
+      <% else %>
+        <%= render :partial => "board_form", :locals => { 
+        :game => @game, :row => 2, :column => 1 } %>
+      <% end %>
+    </td>
+    <td >
+      <% if @game.board[2][2] %>
+        <%= @game.board[2][2] %>
+      <% else %>
+        <%= render :partial => "board_form", :locals => { 
+        :game => @game, :row => 2, :column => 2 } %>
+      <% end %>
+    </td>
   </tr>
 </table>
 

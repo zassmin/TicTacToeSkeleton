@@ -23,7 +23,7 @@ class GamesController < ApplicationController
   # submit the partial here
   def update
     @game = Game.find(params[:id])
-    @game.play(params[:row].to_i,params[:column].to_i)
+    @game.play(params[:game][:row].to_i,params[:game][:column].to_i)
     redirect_to :action => 'show', :id => @game.id
   end
 end
