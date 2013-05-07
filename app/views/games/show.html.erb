@@ -1,88 +1,26 @@
 <% @controller = GamesController.new %>
 <% provide(:title, 'Play Game') %>
-<br/>
-<h1>Play Game</h1>
-<table id=board>
-  <tr>
-    <td >
-      <% if @game.board[0][0] %>
-        <%= @game.board[0][0] %>
-      <% else %>
-        <%= render :partial => "board_form", :locals => { 
-        :game => @game, :row => 0, :column => 0 } %>
-      <% end %>
-    </td>
-    <td >
-      <% if @game.board[0][1] %>
-        <%= @game.board[0][1] %>
-      <% else %>
-        <%= render :partial => "board_form", :locals => { 
-        :game => @game, :row => 0, :column => 1 } %>
-      <% end %>
-    </td>
-    <td >
-      <% if @game.board[0][2] %>
-        <%= @game.board[0][2] %>
-      <% else %>
-        <%= render :partial => "board_form", :locals => { 
-        :game => @game, :row => 0, :column => 2 } %>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <td >
-      <% if @game.board[1][0] %>
-        <%= @game.board[1][0] %>
-      <% else %>
-        <%= render :partial => "board_form", :locals => { 
-        :game => @game, :row => 1, :column => 0 } %>
-      <% end %>
-    </td>
-    <td >
-      <% if @game.board[1][1] %>
-        <%= @game.board[1][1] %>
-      <% else %>
-        <%= render :partial => "board_form", :locals => { 
-        :game => @game, :row => 1, :column => 1 } %>
-      <% end %>
-    </td>
-    <td >
-      <% if @game.board[1][2] %>
-        <%= @game.board[1][2] %>
-      <% else %>
-        <%= render :partial => "board_form", :locals => { 
-        :game => @game, :row => 1, :column => 2 } %>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <td >
-      <% if @game.board[2][0] %>
-        <%= @game.board[2][0] %>
-      <% else %>
-        <%= render :partial => "board_form", :locals => { 
-        :game => @game, :row => 2, :column => 0 } %>
-      <% end %>
-    </td>
-    <td >
-      <% if @game.board[2][1] %>
-        <%= @game.board[2][1] %>
-      <% else %>
-        <%= render :partial => "board_form", :locals => { 
-        :game => @game, :row => 2, :column => 1 } %>
-      <% end %>
-    </td>
-    <td >
-      <% if @game.board[2][2] %>
-        <%= @game.board[2][2] %>
-      <% else %>
-        <%= render :partial => "board_form", :locals => { 
-        :game => @game, :row => 2, :column => 2 } %>
-      <% end %>
-    </td>
-  </tr>
-</table>
 
+<br/>
+
+<h1>Play Game</h1>
+
+<table id=board>
+  <% @game.board.each_with_index do |arry, row| %>
+    <tr>
+      <% arry.each_with_index do |el, column| %>
+        <td >
+          <% if el %>
+            <%= el %>
+          <% else %>
+            <%= render :partial => "board_form", :locals => { 
+            :game => @game, :row => row, :column => column } %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
 
  <%= @game.board %>
  <%= @game.winner? %>
