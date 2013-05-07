@@ -7,8 +7,7 @@ class GamesController < ApplicationController
     puts @games.inspect
 	end
 
-  # NOTE create method is the same refactor after deciding which to use
-  #path /new
+  #we want this method to redirect to show!
 	def new
 		@game = Game.new
     @game.save!
@@ -20,7 +19,7 @@ class GamesController < ApplicationController
   end
   
 
-  # submit the partial here
+  # submitting to the partial
   def update
     @game = Game.find(params[:id])
     @game.play(params[:game][:row].to_i,params[:game][:column].to_i)

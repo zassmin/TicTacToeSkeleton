@@ -18,8 +18,16 @@ describe "Games" do
     it_should_behave_like "all games pages"
   end
 
+  it "should have the correct link on the layout" do
+    visit root_path
+
+    click_link 'Start Game!'
+    click_link 'Start Game'
+    page.should have_selector 'title', text: full_title('Play Game')
+  end
+
   describe "Show page" do
-    before { visit show_path }
+    before { visit new_path }
 
     let(:heading)    { 'Play Game' }
     let(:page_title) { 'Play Game' }
@@ -27,10 +35,12 @@ describe "Games" do
     it_should_behave_like "all games pages"
   end
 
-  it "should have the right link on the layout" do
-    visit root_path
-    click_link 'Start Game!'
+  it "should have the correct link on the layout" do
+    visit new_path
+
     click_link 'Start Game'
     page.should have_selector 'title', text: full_title('Play Game')
+    click_link ''
+    page.should have_content ''
   end
 end

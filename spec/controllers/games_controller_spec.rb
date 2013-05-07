@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe GamesController do
-	describe "GET games#index" do
+	describe "games#index" do
 		before(:each) do 
 			get :index
 		end
@@ -14,7 +14,7 @@ describe GamesController do
     	end
     end
 
-    describe "GET games#new" do
+    describe "games#new" do
     	before(:each) do
       		get :new
     	end
@@ -23,4 +23,26 @@ describe GamesController do
       		assigns[:game].try(:kind_of?, Game).should be_true
     	end
 	end
+
+    describe "games#show" do
+      describe 'with valid params' do
+        before(:each) do
+          @game_id = Game.create(:id)
+          get :show, :id => @game_id
+        end
+
+        it 'should set the @game instance variable' do
+          assigns[:game].try(:kind_of?, Game).should be_true
+          assigns[:game].should == Game.find(@game_id)
+        end
+      end
+
+      describe 'with invalid params' do
+        before(:each) do
+          Game.create!
+          invalid_id = (Game.last.id + 1)
+          get :show, :id => invalid_id
+        end
+      end
+    end
 end
