@@ -59,43 +59,37 @@ p {
 #board {
   margin-left: auto;
   margin-right: auto;
-  tr, td {
-    .left {
-      border-right: 5px solid black;
+  font-size: 72px;
+  text-align: center;
+  tr {
+    :first-child {
       width: 200px;
       height: 200px;
     }
-    .top {
-      border-bottom: 5px solid black;
-    }
-    .bottom {
-      border-top: 5px solid black;
-    }
-    .right {
-      border-left: 5px solid black;
+    :nth-child(2) {
       width: 200px;
       height: 200px;
     }
-    .vertical-mid {
-      border-left: 5px solid black;
-      border-right: 5px solid black;
+    :last-child {
       width: 200px;
       height: 200px;
     }
-    .horizontal-mid {
-      border-top: 5px solid black;
-      border-bottom: 5px solid black;
+  }
+
+  td {
+    :first-child {
       width: 200px;
       height: 200px;
+      padding-right: 10px;
     }
-    a {
-      background-color: #C299FF;
-      display: inline-block;
-      height: 100%;
-      width: 100%;
-      &:hover {
-        background-color: #B8B8FF;
-      }
+    :last-child {
+      width: 200px;
+      height: 200px;
+      padding-left: 10px;
+    }
+    :nth-child(2) {
+      width: 200px;
+      height: 200px;
     }
   }
 }
