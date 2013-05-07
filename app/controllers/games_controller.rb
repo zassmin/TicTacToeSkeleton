@@ -7,7 +7,7 @@ class GamesController < ApplicationController
     puts @games.inspect
 	end
 
-  #we want this method to redirect to show!
+  # we want this method to redirect to show!
 	def new
 		@game = Game.new
     @game.save!
@@ -19,10 +19,15 @@ class GamesController < ApplicationController
   end
   
 
-  # submitting to the partial
+  # submit to the partial _board_form
+  # Play game using @params
+  # Flash winner
   def update
     @game = Game.find(params[:id])
     @game.play(params[:game][:row].to_i,params[:game][:column].to_i)
     redirect_to :action => 'show', :id => @game.id
+    if @game.winner?
+      flash[:success] = "Player #{@game.previous_player} is the winner!"
+    end
   end
 end

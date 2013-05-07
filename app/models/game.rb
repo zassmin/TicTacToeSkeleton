@@ -1,4 +1,6 @@
 class Game < ActiveRecord::Base
+  # Saves the board in the database as an object, 
+  # and allows you to retrieve as the same object
   serialize :board
   
   include GamesHelper
@@ -7,7 +9,7 @@ class Game < ActiveRecord::Base
   # This line tells Rails which attributes of the model are accessible, i.e., 
   # which attributes can be modified automatically by outside users 
   # (such as users submitting requests with web browsers).
-  attr_accessible :board, :current_player, :status, :player_o, :player_x
+  attr_accessible :board
 
   validates :board, :presence => true
 
@@ -30,6 +32,8 @@ class Game < ActiveRecord::Base
   # @param row [Integer] 0-2
   # @param column [Integer] 0-2
   # @return [Boolean] Save successful?
+  # 
+  # use helpers/games_helper to see board in the terminal
   def update_board(player, row, column)
     unless player.in? %w(o x)
       raise ArgumentError, "Player must be either 'x' or 'o'."
@@ -47,7 +51,7 @@ class Game < ActiveRecord::Base
     end
   end
 
-  # Returns the current player
+  # Returns the current_player
   # @return [String] 'x' or 'o'
   def current_player
     turn_num = self.board.flatten.compact.count
@@ -58,11 +62,13 @@ class Game < ActiveRecord::Base
     end
   end
 
+  # checks for previous_player by comparing current_player
   def previous_player
     current_player == 'x' ? 'o' : 'x'
   end
 
-
+  # Plays the game
+  # calls on update_board and winner?
   def play(row, column)
     if winner?
       "Player #{previous_player} is the winner!"
