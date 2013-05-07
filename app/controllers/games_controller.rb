@@ -1,27 +1,25 @@
 class GamesController < ApplicationController
 
-# start writing tests for these controllers!
-
+  # Calling all Games!
 	def index
-		@games = Game.all
-    puts @games.inspect
 	end
 
-  # we want this method to redirect to show!
+  # Calling a new Game
+  # redirect to show
 	def new
 		@game = Game.new
     @game.save!
     redirect_to :action => 'show', :id => @game.id
 	end
 
+  # Showing the game
   def show
     @game = Game.find(params[:id])
   end
   
-
-  # submit to the partial _board_form
   # Play game using @params
   # Flash winner
+  # Make it viewable in show!
   def update
     @game = Game.find(params[:id])
     @game.play(params[:game][:row].to_i,params[:game][:column].to_i)
