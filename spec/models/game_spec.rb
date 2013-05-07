@@ -36,9 +36,6 @@ describe Game do
     	@test_game.update_board('x', 2, 1)
     	saved_game = Game.all.find { |g| g.id == 1 }
     	saved_game.display_element(2, 1).should == 'x'
-    	
-    # TODO explain error, nil:nilclass, in our documentation 
-    
     end
 	end
 
@@ -69,7 +66,7 @@ describe Game do
 									    					  [nil, 'o', nil]]
 		end
 
-		it "should determine which player won with a message!" do
+		it "should determine that player, 'x' won with a message!" do
 			@test_game.play(0,0)
 			@test_game.play(1,0)
 			@test_game.play(0,1)
@@ -77,7 +74,17 @@ describe Game do
 			@test_game.play(0,2)
 			@test_game.play(1,2).should == "Player x is the winner!"
 		end
-	end
+
+    it "should determine that play, 'o', won with a message!" do
+      @test_game.play(1,0)
+      @test_game.play(0,0)
+      @test_game.play(0,1)
+      @test_game.play(1,1)
+      @test_game.play(0,2)
+      @test_game.play(2,2)
+      @test_game.play(1,2).should == "Player o is the winner!"
+    end
+	end 
 
   describe "winner?" do
     it "should be true if the first row is filled with the same letter" do
