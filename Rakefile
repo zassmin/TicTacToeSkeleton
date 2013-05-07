@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-TicTacToeSkeleton::Application.load_tasks
+TicTacToe::Application.load_tasks

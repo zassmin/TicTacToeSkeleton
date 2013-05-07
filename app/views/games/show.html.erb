@@ -1,25 +1,12 @@
-<% @controller = GamesController.new %>
-<% provide(:title, 'Play Game') %>
+<!-- TODO -->
+<!-- TODO -->
 
 <br/>
 
-<h1>Play Game</h1>
+<h1><!-- TODO --></h1>
 
 
-
-<table id=board>
-  <% @game.board.each_with_index do |array, row| %>
-    <tr>
-      <% array.each_with_index do |array, column| %>
-        <td >
-          <% if array %>
-            <%= array %>
-          <% else %>
-            <%= render :partial => "board_form", :locals => { 
-            :game => @game, :row => row, :column => column } %>
-          <% end %>
-        </td>
-      <% end %>
-    </tr>
-  <% end %>
+<table>
+  <!-- TODO rendering partial here! -->
+        
 </table>
