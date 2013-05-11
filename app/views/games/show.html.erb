@@ -8,13 +8,27 @@
 
 
 <table id=board>
+  <!-- iterate through each array in board, grabs the array and the index -->
   <% @game.board.each_with_index do |array, row| %>
-    <tr>
-      <% array.each_with_index do |array, column| %>
-        <td >
-          <% if array %>
-            <%= array %>
+    
+
+      <!-- iterate through each element in the array, grabs the element and the index -->
+      <% array.each_with_index do |element, column| %>
+        <% case column %>
+        <% when 0 %>
+          <% case row %>
+          <% when 0 %>
+          <td class="top left" >
+        <% end %>
+        <% when 1 %>
+        <td class="vertical-mid" >
+        <% when 2 %>
+        <td class="right">
+        <% end %>
+          <% if element %>
+            <%= element %>
           <% else %>
+            <!-- render partial to call on game in the form -->
             <%= render :partial => "board_form", :locals => { 
             :game => @game, :row => row, :column => column } %>
           <% end %>
