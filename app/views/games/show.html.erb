@@ -5,13 +5,15 @@
 
 <h1>Play Game</h1>
 
+
+
 <table id=board>
-  <% @game.board.each_with_index do |arry, row| %>
+  <% @game.board.each_with_index do |array, row| %>
     <tr>
-      <% arry.each_with_index do |el, column| %>
+      <% array.each_with_index do |array, column| %>
         <td >
-          <% if el %>
-            <%= el %>
+          <% if array %>
+            <%= array %>
           <% else %>
             <%= render :partial => "board_form", :locals => { 
             :game => @game, :row => row, :column => column } %>
@@ -21,7 +23,3 @@
     </tr>
   <% end %>
 </table>
-
- <%= @game.board %>
- <%= @game.winner? %>
-
