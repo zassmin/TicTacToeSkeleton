@@ -70,6 +70,8 @@ class Game < ActiveRecord::Base
   # Plays the game
   # calls on update_board and winner?
   def play(row, column)
+    # TODO We need to call this method AFTER each move, not before
+    # 
     if winner?
       "Player #{previous_player} is the winner!"
     else
