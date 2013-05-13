@@ -32,7 +32,7 @@
          <%= @game.board[0][2] %>
        <% else %>
          <%= render :partial => "board_form", :locals => { 
-         :game => @game, :row => 0, :column => 0 } %>
+         :game => @game, :row => 0, :column => 2 } %>
        <% end %>
      </td>
 
@@ -44,7 +44,7 @@
          <%= @game.board[1][0] %>
        <% else %>
          <%= render :partial => "board_form", :locals => { 
-         :game => @game, :row => 0, :column => 0 } %>
+         :game => @game, :row => 1, :column => 0 } %>
        <% end %>
      </td>
      <td class="vertical-mid horizontal-mid">
@@ -52,7 +52,7 @@
          <%= @game.board[1][1] %>
        <% else %>
          <%= render :partial => "board_form", :locals => { 
-         :game => @game, :row => 0, :column => 1 } %>
+         :game => @game, :row => 1, :column => 1 } %>
        <% end %>
      </td>
      <td class="right horizontal-mid">
@@ -60,7 +60,7 @@
          <%= @game.board[1][2] %>
        <% else %>
          <%= render :partial => "board_form", :locals => { 
-         :game => @game, :row => 0, :column => 0 } %>
+         :game => @game, :row => 1, :column => 2 } %>
        <% end %>
      </td>
 
@@ -72,15 +72,15 @@
          <%= @game.board[2][0] %>
        <% else %>
          <%= render :partial => "board_form", :locals => { 
-         :game => @game, :row => 0, :column => 0 } %>
+         :game => @game, :row => 2, :column => 0 } %>
        <% end %>
      </td>
      <td class="vertical-mid bottom">
-       <% if @game.board[1][1] %>
-         <%= @game.board[1][1] %>
+       <% if @game.board[2][1] %>
+         <%= @game.board[2][1] %>
        <% else %>
          <%= render :partial => "board_form", :locals => { 
-         :game => @game, :row => 0, :column => 1 } %>
+         :game => @game, :row => 2, :column => 1 } %>
        <% end %>
      </td>
      <td class="right bottom">
@@ -88,7 +88,7 @@
          <%= @game.board[2][2] %>
        <% else %>
          <%= render :partial => "board_form", :locals => { 
-         :game => @game, :row => 0, :column => 0 } %>
+         :game => @game, :row => 2, :column => 2 } %>
        <% end %>
      </td>
 
