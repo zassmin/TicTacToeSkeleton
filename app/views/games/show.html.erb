@@ -5,92 +5,21 @@
 
 <h1>Play Game</h1>
 
-
-
 <table id=board>
- <table id=board>
-   <tr>
+  <% @game.board.each_with_index do |array, row| %>
+    <tr>
+      <% array.each_with_index do |element, column| %>
 
-     <td class="left top">
-       <% if @game.board[0][0] %>
-         <%= @game.board[0][0] %>
-       <% else %>
-         <%= render :partial => "board_form", :locals => { 
-         :game => @game, :row => 0, :column => 0 } %>
-       <% end %>
-     </td>
-     <td class="top vertical-mid">
-       <% if @game.board[0][1] %>
-         <%= @game.board[0][1] %>
-       <% else %>
-         <%= render :partial => "board_form", :locals => { 
-         :game => @game, :row => 0, :column => 1 } %>
-       <% end %>
-     </td>
-     <td class="top right">
-       <% if @game.board[0][2] %>
-         <%= @game.board[0][2] %>
-       <% else %>
-         <%= render :partial => "board_form", :locals => { 
-         :game => @game, :row => 0, :column => 2 } %>
-       <% end %>
-     </td>
+        <td class="<%= create_cell_class(row, column) %>" >
+          <% if element %>
+            <%= element %>
+          <% else %>
+            <%= render :partial => "board_form", :locals => { 
+            :game => @game, :row => row, :column => column } %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
 
-   </tr>
-   <tr>
- 
-     <td class="left horizontal-mid">
-       <% if @game.board[1][0] %>
-         <%= @game.board[1][0] %>
-       <% else %>
-         <%= render :partial => "board_form", :locals => { 
-         :game => @game, :row => 1, :column => 0 } %>
-       <% end %>
-     </td>
-     <td class="vertical-mid horizontal-mid">
-       <% if @game.board[1][1] %>
-         <%= @game.board[1][1] %>
-       <% else %>
-         <%= render :partial => "board_form", :locals => { 
-         :game => @game, :row => 1, :column => 1 } %>
-       <% end %>
-     </td>
-     <td class="right horizontal-mid">
-       <% if @game.board[1][2] %>
-         <%= @game.board[1][2] %>
-       <% else %>
-         <%= render :partial => "board_form", :locals => { 
-         :game => @game, :row => 1, :column => 2 } %>
-       <% end %>
-     </td>
-
-  </tr>
-  <tr>
- 
-     <td class="left bottom">
-       <% if @game.board[2][0] %>
-         <%= @game.board[2][0] %>
-       <% else %>
-         <%= render :partial => "board_form", :locals => { 
-         :game => @game, :row => 2, :column => 0 } %>
-       <% end %>
-     </td>
-     <td class="vertical-mid bottom">
-       <% if @game.board[2][1] %>
-         <%= @game.board[2][1] %>
-       <% else %>
-         <%= render :partial => "board_form", :locals => { 
-         :game => @game, :row => 2, :column => 1 } %>
-       <% end %>
-     </td>
-     <td class="right bottom">
-       <% if @game.board[2][2] %>
-         <%= @game.board[2][2] %>
-       <% else %>
-         <%= render :partial => "board_form", :locals => { 
-         :game => @game, :row => 2, :column => 2 } %>
-       <% end %>
-     </td>
-
-  </tr>
 </table>
