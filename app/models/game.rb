@@ -55,6 +55,7 @@ class Game < ActiveRecord::Base
   # 
   # @returns winner
   # updates the board
+  # call #WINNER AFTER each move, not before
   def play(row, column)
     # TODO
   end

@@ -1,6 +1,10 @@
+<!-- this submits the coordinates to the controller -->
+<!-- gets the variables from the locals hash -->
+<!-- gets @game from /show, it wouldn't otherwise -->
+<!--  have access to the instance variable -->
 <%= form_for(game) do |g| %>
   <%= g.hidden_field :row, :value => row %>
   <%= g.hidden_field :column, :value => column %>
-      
-  <%= g.submit "#{row}, #{column}", class: "btn btn-large btn-primary" %>
+<!-- send the form to /show -->       
+  <%= g.submit "#{row}, #{column}", class: "big-btn btn btn-large btn-primary" %>
 <% end %>
