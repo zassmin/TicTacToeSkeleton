@@ -5,7 +5,6 @@
 <%= form_for(game) do |g| %>
   <%= g.hidden_field :row, :value => row %>
   <%= g.hidden_field :column, :value => column %>
-
-<!-- send the form to /show -->      
-  <%= g.submit "#{row}, #{column}", class: "btn btn-large primary" %>
+<!-- send the form to /show -->       
+  <%= g.submit "#{row}, #{column}", class: "big-btn btn btn-large btn-primary" %>
 <% end %>
