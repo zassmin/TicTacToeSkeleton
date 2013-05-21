@@ -36,7 +36,8 @@ class Game < ActiveRecord::Base
   # 
   # use helpers/games_helper to see board in the terminal
   def update_board(player, row, column)
-    # TODO
+    board[row][column] = player
+    
   end
 
   # Returns the current_player
